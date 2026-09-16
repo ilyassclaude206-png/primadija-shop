@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Primadija by Khadija — Boutique</title>
+<meta name="description" content="Primadija by Khadija — foulards et accessoires élégants. Commandez en ligne, paiement à la livraison ou par virement." />
+<link rel="icon" href="assets/logo/primadija-logo.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="brand">
+      <img src="assets/logo/primadija-logo.jpg" alt="Primadija by Khadija" />
+      <div class="brand-text">
+        <div class="name">PRIMADIJA</div>
+        <div class="tagline">by Khadija</div>
+      </div>
+    </div>
+    <button class="cart-btn" id="openCartBtn">
+      🛍️ Panier <span class="cart-badge" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <span class="eyebrow">by Khadija</span>
+  <h1>Nos plus belles pièces</h1>
+  <p>Foulards &amp; accessoires sélectionnés avec soin. Commandez en quelques clics, on vous livre.</p>
+  <a href="#shop" class="hero-cta">Découvrir la collection</a>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-item"><span class="ic">🚚</span> Livraison partout au Maroc</div>
+  <div class="trust-item"><span class="ic">💳</span> Cash ou virement</div>
+  <div class="trust-item"><span class="ic">✨</span> Pièces sélectionnées</div>
+</div>
+
+<div class="container" id="shop">
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="productGrid">
+    <div class="empty-state">Chargement des articles…</div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>© <span id="year"></span> Primadija by Khadija — Tous droits réservés.</p>
+  <p><a href="https://www.instagram.com/primadija" target="_blank" rel="noopener">Suivez-nous sur Instagram</a></p>
+</footer>
+
+<a href="#" id="whatsappFab" class="whatsapp-fab" style="display:none;" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">💬</a>
+
+<div class="mobile-cart-bar" id="mobileCartBar">
+  <div class="mcb-total"><small>Total panier</small><span id="mcbTotal">0 DH</span></div>
+  <button id="mcbBtn">Voir le panier</button>
+</div>
+
+<!-- Cart drawer -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="cartDrawer">
+  <div class="drawer-header">
+    <h2 style="margin:0;font-size:1.2rem;">Votre panier</h2>
+    <button id="closeCartBtn">&times;</button>
+  </div>
+  <div class="drawer-items" id="cartItems"></div>
+  <div class="drawer-footer">
+    <div class="total"><span>Total</span><span id="cartTotal">0 DH</span></div>
+    <button class="btn-main" id="checkoutBtn" disabled>Passer la commande</button>
+  </div>
+</aside>
+
+<!-- Checkout modal -->
+<div class="modal-overlay" id="checkoutOverlay">
+  <div class="modal">
+    <h2>Finaliser la commande</h2>
+    <p class="sub">Remplissez vos informations, on vous contacte pour confirmer.</p>
+    <form id="checkoutForm">
+      <div class="field">
+        <label>Nom complet *</label>
+        <input type="text" name="name" required />
+      </div>
+      <div class="field">
+        <label>Téléphone *</label>
+        <input type="tel" name="phone" required placeholder="06 12 34 56 78" />
+      </div>
+      <div class="field">
+        <label>Ville *</label>
+        <input type="text" name="city" required />
+      </div>
+      <div class="field">
+        <label>Adresse complète *</label>
+        <textarea name="address" required></textarea>
+      </div>
+      <div class="field">
+        <label>Mode de paiement *</label>
+        <div class="pay-options">
+          <div class="pay-option selected" data-value="cod">💵 Cash à la livraison</div>
+          <div class="pay-option" data-value="virement">🏦 Virement bancaire</div>
+        </div>
+        <input type="hidden" name="paymentMethod" value="cod" />
+      </div>
+      <div class="field" id="virementField" style="display:none;">
+        <label>Référence du virement (si déjà effectué)</label>
+        <input type="text" name="virementRef" placeholder="Optionnel" />
+      </div>
+      <div class="field">
+        <label>Notes (optionnel)</label>
+        <textarea name="notes" placeholder="Précisions sur la commande, la livraison…"></textarea>
+      </div>
+      <button type="submit" class="btn-main" id="submitOrderBtn">Confirmer la commande</button>
+      <div id="formMsg"></div>
+    </form>
+  </div>
+</div>
+
+<script type="module" src="js/store.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

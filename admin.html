@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Primadija — Espace Admin</title>
+<link rel="icon" href="assets/logo/primadija-logo.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="admin-body">
+
+<!-- Login -->
+<div class="admin-login" id="loginBox">
+  <img src="assets/logo/primadija-logo.jpg" alt="Primadija" />
+  <h2>Espace Admin</h2>
+  <p class="sub" style="margin-bottom:16px;">Connectez-vous pour gérer la boutique</p>
+  <form id="loginForm">
+    <div class="field" style="text-align:left;">
+      <label>E-mail</label>
+      <input type="email" name="email" required autocomplete="username" />
+    </div>
+    <div class="field" style="text-align:left;">
+      <label>Mot de passe</label>
+      <input type="password" name="password" required autocomplete="current-password" />
+    </div>
+    <button type="submit" class="btn-main">Se connecter</button>
+    <div id="loginMsg" class="form-msg"></div>
+  </form>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard" style="display:none;">
+  <nav class="admin-nav">
+    <div class="container">
+      <div class="brand">
+        <img src="assets/logo/primadija-logo.jpg" alt="Primadija" style="height:40px;width:40px;" />
+        <strong>Primadija — Admin</strong>
+      </div>
+      <div class="admin-tabs">
+        <button id="tabOrdersBtn" class="active">🧾 <span>Commandes</span></button>
+        <button id="tabProductsBtn">🛍️ <span>Articles</span></button>
+      </div>
+      <button class="logout-btn" id="logoutBtn">Déconnexion</button>
+    </div>
+  </nav>
+
+  <main class="admin-main container">
+
+    <!-- ORDERS -->
+    <section id="ordersSection">
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Total commandes</div>
+          <div class="stat-value" id="statTotal">0</div>
+        </div>
+        <div class="stat-card pending">
+          <div class="stat-label">En attente</div>
+          <div class="stat-value" id="statPending">0</div>
+        </div>
+        <div class="stat-card confirmed">
+          <div class="stat-label">Confirmées</div>
+          <div class="stat-value" id="statConfirmed">0</div>
+        </div>
+        <div class="stat-card revenue">
+          <div class="stat-label">Ventes confirmées</div>
+          <div class="stat-value" id="statRevenue">0 DH</div>
+        </div>
+      </div>
+      <div class="admin-section-head">
+        <h2 style="margin:0;">Commandes</h2>
+        <div class="status-chips" id="statusChips">
+          <button class="chip active" data-status="all">Toutes</button>
+          <button class="chip" data-status="pending">En attente</button>
+          <button class="chip" data-status="confirmed">Confirmée</button>
+          <button class="chip" data-status="cancelled">Annulée</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Client</th>
+              <th>Articles</th>
+              <th>Total</th>
+              <th>Paiement</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBody">
+            <tr><td colspan="7">Chargement…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="productsSection" style="display:none;">
+      <div class="admin-section-head">
+        <h2 style="margin:0;">Articles</h2>
+        <button class="btn-gold" id="addProductBtn">+ Ajouter un article</button>
+      </div>
+      <div class="product-admin-grid" id="productsGrid">
+        <div class="empty-state">Chargement…</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Product form modal -->
+<div class="modal-overlay" id="productModalOverlay">
+  <div class="modal">
+    <h2 id="productModalTitle">Ajouter un article</h2>
+    <form id="productForm">
+      <input type="hidden" name="productId" />
+      <div class="field">
+        <label>Nom de l'article *</label>
+        <input type="text" name="name" required />
+      </div>
+      <div class="field">
+        <label>Prix (DH) *</label>
+        <input type="number" name="price" min="0" step="0.01" required />
+      </div>
+      <div class="field">
+        <label>Catégorie (optionnel)</label>
+        <input type="text" name="category" placeholder="Ex: Foulards, Sacs…" />
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea name="description"></textarea>
+      </div>
+      <div class="field">
+        <label>Photo (laisser vide pour garder l'actuelle)</label>
+        <input type="file" name="image" accept="image/*" />
+        <img id="productPreview" style="margin-top:8px;max-height:120px;border-radius:8px;display:none;" />
+      </div>
+      <div class="field">
+        <label><input type="checkbox" name="inStock" checked style="width:auto;display:inline-block;margin-right:6px;" /> En stock / disponible</label>
+      </div>
+      <button type="submit" class="btn-main" id="saveProductBtn">Enregistrer</button>
+      <button type="button" class="btn-main" id="cancelProductBtn" style="background:#cfc3b6;margin-top:8px;">Annuler</button>
+      <div id="productFormMsg" class="form-msg"></div>
+    </form>
+  </div>
+</div>
+
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

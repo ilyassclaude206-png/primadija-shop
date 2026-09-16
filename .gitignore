@@ -1,0 +1,10 @@
+node_modules/
+.netlify/
+.env
+.DS_Store
+
+# Photos brutes non utilisées par le site (déjà copiées/triées dans assets/)
+# — restent sur ton PC pour que tu puisses les choisir depuis l'admin,
+# mais pas besoin de les héberger sur GitHub/Netlify.
+/article/
+/WhatsApp Image*.jpeg

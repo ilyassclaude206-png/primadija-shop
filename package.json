@@ -1,0 +1,9 @@
+{
+  "name": "primadija-store",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Boutique en ligne Primadija by Khadija — Firebase + Netlify",
+  "dependencies": {
+    "nodemailer": "^6.9.14"
+  }
+}
